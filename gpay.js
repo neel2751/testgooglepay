@@ -80,7 +80,7 @@ function getGooglePaymentsConfiguration() {
 function createPaymentRequest() {
     // Add support for the Google Pay API.
     const methodData = [{
-        supportedMethods: 'https://tez.google.com/pay',
+        supportedMethods: 'https://google.com/pay',
         data: getGooglePaymentsConfiguration()
     }];
     // Add other supported payment methods.
