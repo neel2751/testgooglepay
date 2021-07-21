@@ -103,7 +103,7 @@ paymentRequest.on('paymentmethod', function (e) {
     // instead check for: `paymentIntent.status === "requires_source_action"`.
     if (paymentIntent.status === 'requires_action') {
         // Let Stripe.js handle the rest of the payment flow.
-        let { error, paymentIntent } = await stripe.confirmCardPayment(
+        let { error, paymentIntent } = stripe.confirmCardPayment(
             clientSecret
         );
         if (error) {
