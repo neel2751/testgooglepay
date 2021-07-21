@@ -97,6 +97,36 @@ function checkCanMakePayment(request) {
         });
 }
 
+function showPaymentUI(request, canMakePayment) {
+    if (!canMakePayment) {
+        handleNotReadyToPay();
+        return;
+    }
+
+    // Set payment timeout.
+    let paymentTimeout = window.setTimeout(function () {
+        window.clearTimeout(paymentTimeout);
+        request.abort()
+            .then(function () {
+                console.log('Payment timed out after 20 minutes.');
+            })
+            .catch(function () {
+                console.log('Unable to abort, user is in the process of paying.');
+            });
+    }, 20 * 60 * 1000); /* 20 minutes */
+
+    request.show()
+        .then(function (instrument) {
+
+            window.clearTimeout(paymentTimeout);
+            processResponse(instrument); // Handle response from browser.
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+}
+
+
 function processResponse(instrument) {
     var instrumentString = instrumentToJsonString(instrument);
     console.log(instrumentString);
