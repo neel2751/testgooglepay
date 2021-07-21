@@ -22,7 +22,7 @@ function onBuyClicked() {
             mc: '0000',
             tr: (Math.random().toString(10).slice(2)).toString() + 'UPI',
             tid: (Math.random().toString(10).slice(2)).toString(),
-            url: 'http://192.168.1.4/GooglePay/',
+            url: 'https://neel2751.github.io/testgooglepay/',
         },
     }];
 
