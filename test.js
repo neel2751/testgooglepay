@@ -58,9 +58,7 @@ function onBuyClicked() {
 }
 
 
-function handleNotReadyToPay() {
-    alert('Google Pay is not ready to pay.');
-}
+
 /**
     * Check whether can make payment with Google Pay or not. It will check session storage
     * cache first and use the cache directly if it exists. Otherwise, it will call
@@ -126,6 +124,9 @@ function showPaymentUI(request, canMakePayment) {
         });
 }
 
+function handleNotReadyToPay() {
+    alert('Google Pay is not ready to pay.');
+}
 
 function processResponse(instrument) {
     var instrumentString = instrumentToJsonString(instrument);
