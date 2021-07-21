@@ -12,7 +12,7 @@ function readSupportedInstruments() {
     formValue['tr'] = document.getElementById('tr').value;
     // formValue['tid'] = document.getElementById('tid').value;
     formValue['url'] = document.getElementById('url').value;
-    formValue['cu'] = document.getElementById('cu').value;
+    // formValue['cu'] = document.getElementById('cu').value;
     console.log(formValue);
     return formValue;
 
