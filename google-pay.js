@@ -25,7 +25,7 @@ var paymentRequest = stripe.paymentRequest({
     currency: 'inr',
     total: {
         label: 'Demo total',
-        amount: 1000,
+        amount: 10000,
     },
     requestPayerName: true,
     requestPayerEmail: true,
@@ -44,6 +44,7 @@ paymentRequest.canMakePayment().then(function (result) {
         prButton.mount('#payment-request-button');
     } else {
         document.getElementById('payment-request-button').style.display = 'none';
+        console.log(result);
         console.log('google pay not found');
         // addMessage('Google Pay support not found. Check the pre-requisites above and ensure you are testing in a supported browser.');
     }
