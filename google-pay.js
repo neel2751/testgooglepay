@@ -118,6 +118,7 @@
 //     console.log(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
 // });
 // // });
+var clientSecret = 'ca_JtmYDMUVp4iUDjPWTsGIKGsLlZZfBXN7'; 
 
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -133,9 +134,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     // }
   
     // 1. Initialize Stripe
+
+    
     var stripe = Stripe('pk_test_51JFXAbSGkyW1mtgfh190tvzrZmvMA2xJjoVOHeGiw37wxJRLOtL2WbzN1UfAV3dUfpecaDly4TWDq8qJU6E4slmI00riBVayKB', {
         apiVersion: "2020-08-27",
     });
+
   
     // 2. Create a payment request object
     var paymentRequest = stripe.paymentRequest({
@@ -170,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Make a call to the server to create a new
       // payment intent and store its client_secret.
       const {error: backendError, clientSecret} = await fetch(
-        '/',
+        '/buy',
         {
           method: 'POST',
           headers: {
