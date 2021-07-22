@@ -73,7 +73,7 @@ paymentRequest.on('paymentmethod', function (e) {
         return;
     }
 
-    addMessage(`Client secret returned.`);
+    console.log(`Client secret returned.`);
 
     // Confirm the PaymentIntent without handling potential next actions (yet).
     let { error, paymentIntent } = stripe.confirmCardPayment(
@@ -87,7 +87,7 @@ paymentRequest.on('paymentmethod', function (e) {
     );
 
     if (error) {
-        addMessage(error.message);
+        console.log(error.message);
 
         // Report to the browser that the payment failed, prompting it to
         // re-show the payment interface, or show an error message and close
@@ -109,12 +109,12 @@ paymentRequest.on('paymentmethod', function (e) {
         );
         if (error) {
             // The payment failed -- ask your customer for a new payment method.
-            addMessage(error.message);
+            console.log(error.message);
             return;
         }
-        addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
+        console.log(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
     }
 
-    addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
+    console.log(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
 });
 // });
