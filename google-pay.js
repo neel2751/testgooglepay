@@ -118,7 +118,7 @@
 //     console.log(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
 // });
 // // });
-var clientSecret = 'ca_JtmYDMUVp4iUDjPWTsGIKGsLlZZfBXN7'; 
+// var clientSecret = ca_JtmYDMUVp4iUDjPWTsGIKGsLlZZfBXN7; 
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Load the publishable key from the server. The publishable key
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log(e);
       // Make a call to the server to create a new
       // payment intent and store its client_secret.
-      const {error: backendError, clientSecret} = await fetch('https://neel2751.github.io/',
+      const {error: backendError, clientSecret} = await fetch('https://neel2751.github.io/testgooglepay',
         {
           method: 'POST',
           headers: {
