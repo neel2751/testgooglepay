@@ -166,6 +166,7 @@
           {handleActions: false}
         ).then(function(confirmResult) {
           if (confirmResult.error) {
+              console.log(ev);
             // Report to the browser that the payment failed, prompting it to
             // re-show the payment interface, or show an error message and close
             // the payment interface.
@@ -181,6 +182,7 @@
               // Let Stripe.js handle the rest of the payment flow.
               stripe.confirmCardPayment(clientSecret).then(function(result) {
                 if (result.error) {
+                    console.log(result);
                   // The payment failed -- ask your customer for a new payment method.
                 } else {
                   // The payment has succeeded.
