@@ -130,7 +130,7 @@
 
   
     // 2. Create a payment request object
-    var paymentRequest = stripe.paymentIntent({
+    var paymentRequest = stripe.paymentRequest({
       country: 'IN',
       currency: 'inr',
       total: {
@@ -161,7 +161,7 @@
     paymentRequest.on('paymentmethod', function(ev) {
         // Confirm the PaymentIntent without handling potential next actions (yet).
         stripe.confirmCardPayment(
-          clientSecret,
+        //   clientSecret,
           {payment_method: ev.paymentMethod.id},
           {handleActions: false}
         ).then(function(confirmResult) {
