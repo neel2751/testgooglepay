@@ -20,7 +20,7 @@ var stripe = Stripe('pk_test_51JFXAbSGkyW1mtgfh190tvzrZmvMA2xJjoVOHeGiw37wxJRLOt
 });
 
 // 2. Create a payment request object
-var paymentRequest = stripe.paymentRequest({
+var paymentRequest = stripe.paymentRequest.create({
     country: 'IN',
     currency: 'inr',
     total: {
