@@ -157,75 +157,110 @@ document.addEventListener('DOMContentLoaded', async () => {
         addMessage('Google Pay support not found. Check the pre-requisites above and ensure you are testing in a supported browser.');
       }
     });
+
+    paymentRequest.on('paymentmethod', function(ev) {
+        // Confirm the PaymentIntent without handling potential next actions (yet).
+        stripe.confirmCardPayment(
+          clientSecret,
+          {payment_method: ev.paymentMethod.id},
+          {handleActions: false}
+        ).then(function(confirmResult) {
+          if (confirmResult.error) {
+            // Report to the browser that the payment failed, prompting it to
+            // re-show the payment interface, or show an error message and close
+            // the payment interface.
+            ev.complete('fail');
+          } else {
+            // Report to the browser that the confirmation was successful, prompting
+            // it to close the browser payment method collection interface.
+            ev.complete('success');
+            // Check if the PaymentIntent requires any actions and if so let Stripe.js
+            // handle the flow. If using an API version older than "2019-02-11"
+            // instead check for: `paymentIntent.status === "requires_source_action"`.
+            if (confirmResult.paymentIntent.status === "requires_action") {
+              // Let Stripe.js handle the rest of the payment flow.
+              stripe.confirmCardPayment(clientSecret).then(function(result) {
+                if (result.error) {
+                  // The payment failed -- ask your customer for a new payment method.
+                } else {
+                  // The payment has succeeded.
+                }
+              });
+            } else {
+              // The payment has succeeded.
+            }
+          }
+        });
+      });
   
-    paymentRequest.on('paymentmethod', async (e) => {
-        console.log(e);
-      // Make a call to the server to create a new
-      // payment intent and store its client_secret.
-      const {error: backendError, clientSecret} = await fetch('https://neel2751.github.io/testgooglepay',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            currency: 'inr',
-            paymentMethodType: 'card',
-          }),
-        }
-      ).then((r) => r.json());
-      console.log(r);
+    // paymentRequest.on('paymentmethod', async (e) => {
+    //     console.log(e);
+    //   // Make a call to the server to create a new
+    //   // payment intent and store its client_secret.
+    //   const {error: backendError, clientSecret} = await fetch('https://neel2751.github.io/testgooglepay',
+    //     {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({
+    //         currency: 'inr',
+    //         paymentMethodType: 'card',
+    //       }),
+    //     }
+    //   ).then((r) => r.json());
+    //   console.log(r);
   
-      if (backendError) {
-          console.log(e);
-        addMessage(backendError.message);
-        e.complete('fail');
-        return;
-      }
+    //   if (backendError) {
+    //       console.log(e);
+    //     addMessage(backendError.message);
+    //     e.complete('fail');
+    //     return;
+    //   }
   
-      addMessage(`Client secret returned.`);
+    //   addMessage(`Client secret returned.`);
   
-      // Confirm the PaymentIntent without handling potential next actions (yet).
-      let {error, paymentIntent} = await stripe.confirmCardPayment(
-          console.log(clientSecret),
-        clientSecret,
-        {
-          payment_method: e.paymentMethod.id,
-        },
-        {
-          handleActions: false,
-        }
-      );
+    //   // Confirm the PaymentIntent without handling potential next actions (yet).
+    //   let {error, paymentIntent} = await stripe.confirmCardPayment(
+    //       console.log(clientSecret),
+    //     clientSecret,
+    //     {
+    //       payment_method: e.paymentMethod.id,
+    //     },
+    //     {
+    //       handleActions: false,
+    //     }
+    //   );
   
-      if (error) {
-        addMessage(error.message);
+    //   if (error) {
+    //     addMessage(error.message);
   
-        // Report to the browser that the payment failed, prompting it to
-        // re-show the payment interface, or show an error message and close
-        // the payment interface.
-        e.complete('fail');
-        return;
-      }
-      // Report to the browser that the confirmation was successful, prompting
-      // it to close the browser payment method collection interface.
-      e.complete('success');
+    //     // Report to the browser that the payment failed, prompting it to
+    //     // re-show the payment interface, or show an error message and close
+    //     // the payment interface.
+    //     e.complete('fail');
+    //     return;
+    //   }
+    //   // Report to the browser that the confirmation was successful, prompting
+    //   // it to close the browser payment method collection interface.
+    //   e.complete('success');
   
-      // Check if the PaymentIntent requires any actions and if so let Stripe.js
-      // handle the flow. If using an API version older than "2019-02-11" instead
-      // instead check for: `paymentIntent.status === "requires_source_action"`.
-      if (paymentIntent.status === 'requires_action') {
-        // Let Stripe.js handle the rest of the payment flow.
-        let {error, paymentIntent} = await stripe.confirmCardPayment(
-          clientSecret
-        );
-        if (error) {
-          // The payment failed -- ask your customer for a new payment method.
-          addMessage(error.message);
-          return;
-        }
-        addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
-      }
+    //   // Check if the PaymentIntent requires any actions and if so let Stripe.js
+    //   // handle the flow. If using an API version older than "2019-02-11" instead
+    //   // instead check for: `paymentIntent.status === "requires_source_action"`.
+    //   if (paymentIntent.status === 'requires_action') {
+    //     // Let Stripe.js handle the rest of the payment flow.
+    //     let {error, paymentIntent} = await stripe.confirmCardPayment(
+    //       clientSecret
+    //     );
+    //     if (error) {
+    //       // The payment failed -- ask your customer for a new payment method.
+    //       addMessage(error.message);
+    //       return;
+    //     }
+    //     addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
+    //   }
   
-      addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
-    });
+    //   addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
+    // });
   });
