@@ -118,9 +118,9 @@
 //     console.log(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
 // });
 // // });
-var clientSecret = "ca_JtmYDMUVp4iUDjPWTsGIKGsLlZZfBXN7"; 
+// var clientSecret = "ca_JtmYDMUVp4iUDjPWTsGIKGsLlZZfBXN7"; 
 
-document.addEventListener('DOMContentLoaded', async () => {
+// document.addEventListener('DOMContentLoaded', async () => {
     // 1. Initialize Stripe
 
     
@@ -263,4 +263,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     //   addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
     // });
-  });
+//   });
