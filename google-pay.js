@@ -161,7 +161,7 @@
     paymentRequest.on('paymentmethod', function(ev) {
         // Confirm the PaymentIntent without handling potential next actions (yet).
         stripe.confirmCardPayment(
-          clientSecret,
+          PaymentRequest.client_serect,
           {payment_method: ev.paymentMethod.id},
           {handleActions: false}
         ).then(function(confirmResult) {
