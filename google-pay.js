@@ -121,17 +121,6 @@
 // var clientSecret = ca_JtmYDMUVp4iUDjPWTsGIKGsLlZZfBXN7; 
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Load the publishable key from the server. The publishable key
-    // is set in your .env file. In practice, most users hard code the
-    // publishable key when initializing the Stripe object.
-    // const {publishableKey} = await fetch('/config').then((r) => r.json());
-    // if (!publishableKey) {
-    //   addMessage(
-    //     'No publishable key returned from the server. Please check `.env` and try again'
-    //   );
-    //   alert('Please set your Stripe publishable API key in the .env file');
-    // }
-  
     // 1. Initialize Stripe
 
     
@@ -185,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           }),
         }
       ).then((r) => r.json());
-      console.log(e);
+      console.log(r);
   
       if (backendError) {
           console.log(e);
