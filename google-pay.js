@@ -197,6 +197,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
       // Confirm the PaymentIntent without handling potential next actions (yet).
       let {error, paymentIntent} = await stripe.confirmCardPayment(
+          console.log(clientSecret),
         clientSecret,
         {
           payment_method: e.paymentMethod.id,
