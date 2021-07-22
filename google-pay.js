@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Make a call to the server to create a new
       // payment intent and store its client_secret.
       const {error: backendError, clientSecret} = await fetch(
-        'buy',
+        '/',
         {
           method: 'POST',
           headers: {
@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       ).then((r) => r.json());
   
       if (backendError) {
+          console.log(e);
         addMessage(backendError.message);
         e.complete('fail');
         return;
