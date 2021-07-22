@@ -120,7 +120,6 @@
 // // });
 var clientSecret = 'ca_JtmYDMUVp4iUDjPWTsGIKGsLlZZfBXN7'; 
 
-
 document.addEventListener('DOMContentLoaded', async () => {
     // Load the publishable key from the server. The publishable key
     // is set in your .env file. In practice, most users hard code the
@@ -171,10 +170,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   
     paymentRequest.on('paymentmethod', async (e) => {
+        console.log(e);
       // Make a call to the server to create a new
       // payment intent and store its client_secret.
       const {error: backendError, clientSecret} = await fetch('https://neel2751.github.io/',
-      console.log(clientSecret),
         {
           method: 'POST',
           headers: {
@@ -186,6 +185,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           }),
         }
       ).then((r) => r.json());
+      console.log(e);
   
       if (backendError) {
           console.log(e);
