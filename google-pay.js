@@ -295,7 +295,7 @@ function initPaymentRequest(){
         }
     });
 
-    paymentRequest.on('click', updatePaymentRequest);
+    paymentRequest.on('click', paymentRequestElement);
     paymentRequest.on('token', function(ev) {
         // Send the token to your server to charge it!
         fetch('/checkout.php', {
@@ -328,7 +328,7 @@ function initPaymentRequest(){
   });
 
     prButton = elements.create('paymentRequestButton', {
-        paymentRequest: paymentRequest,
+        paymentRequest: paymentRequestElement,
     });
 
     $("#payment-request-button").append("<br>update");
