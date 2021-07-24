@@ -14,7 +14,7 @@ try {
 
     $paymentIntent = \Stripe\PaymentIntent::create([
         'paymentMethodType' => 'card',
-        'currency' => 'usd',
+        'currency' => 'inr',
     ]);
 
     $output = [
