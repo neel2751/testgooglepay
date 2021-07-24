@@ -298,7 +298,7 @@ function initPaymentRequest(){
     paymentRequest.on('click', updatePaymentRequest);
     paymentRequest.on('token', function(ev) {
         // Send the token to your server to charge it!
-        fetch('/charges', {
+        fetch('/checkout.php', {
             method: 'POST',
             body: JSON.stringify({token: ev.token.id}),
         })
