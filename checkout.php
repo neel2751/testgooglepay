@@ -3,7 +3,7 @@
 require_once('./stripe/init.php');
 
 \Stripe\Stripe::setApiKey('sk_test_51JFXAbSGkyW1mtgfB7szsploYLMtaPMZChBA5PcF0egUZMsCAANE0S2HEUoSjLiZls1xF0vgPOV5IXcu5wb9p0co00FVAvxQcP');
-\Stripe\Stripe::setApiKey('sk_test_tR3PYbcVNZZ796tH88S4VQ2u');
+// \Stripe\Stripe::setApiKey('sk_test_tR3PYbcVNZZ796tH88S4VQ2u');
 
 $intent = \Stripe\PaymentIntent::create([
     'amount' => 1099,
