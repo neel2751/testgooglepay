@@ -50,6 +50,12 @@ paymentRequest.canMakePayment().then(function (result) {
     }
 });
 
+// paymentRequest.on("token", function(result) {
+//     var example = document.querySelector(".example5");
+//     example.querySelector(".token").innerText = result.token.id;
+//     example.classList.add("submitted");
+//     result.complete("success");
+//   });
 paymentRequest.on('paymentmethod', function (e) {
     // Make a call to the server to create a new
     // payment intent and store its client_secret.
