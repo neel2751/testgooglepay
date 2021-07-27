@@ -51,8 +51,8 @@ function getGooglePaymentsConfiguration() {
         merchantInfo: {
             // A merchant ID is available after approval by Google.
             // 'merchantId':'12345678901234567890',
-            merchantId: 'BCR2DN6TSOXIXQKL',
-            merchantName: 'MOBILE MARKET'
+            merchantId: '12345678901234567890',
+            merchantName: 'Demo Merchant'
         },
         allowedPaymentMethods: [{
             type: 'CARD',
@@ -66,7 +66,7 @@ function getGooglePaymentsConfiguration() {
                 // @see {@link https://developers.google.com/pay/api/web/reference/request-objects#gateway}
                 parameters: {
                     'gateway': 'example',
-                    'gatewayMerchantId': 'example'
+                    'gatewayMerchantId': 'exampleGatewayMerchantId'
                 }
             }
         }]
