@@ -28,6 +28,7 @@ function onBuyClicked() {
         .show()
         .then(function (response) {
             // Dismiss payment dialog.
+            console.log(response);
             response.complete('success');
             handlePaymentResponse(response);
         })
@@ -110,6 +111,7 @@ function createPaymentRequest() {
  * @param {PaymentResponse} response returned when a user approves the payment request
  */
 function handlePaymentResponse(response) {
+    console.log(response);
     const formattedResponse = document.createElement('pre');
     formattedResponse.appendChild(
         document.createTextNode(JSON.stringify(response.toJSON(), null, 2)));
