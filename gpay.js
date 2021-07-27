@@ -85,13 +85,13 @@ function createPaymentRequest() {
         data: getGooglePaymentsConfiguration()
     }];
     // Add other supported payment methods.
-    // methodData.push({
-    //     supportedMethods: 'basic-card',
-    //     data: {
-    //         supportedNetworks:
-    //             Array.from(allowedCardNetworks, (network) => network.toLowerCase())
-    //     }
-    // });
+    methodData.push({
+        supportedMethods: 'basic-card',
+        data: {
+            supportedNetworks:
+                Array.from(allowedCardNetworks, (network) => network.toLowerCase())
+        }
+    });
 
     const details = {
         total: { label: 'Test Purchase', amount: { currency: 'INR', value: '1.00' } }
@@ -103,9 +103,6 @@ function createPaymentRequest() {
         requestPayerEmail: true,
         requestPayerPhone: true,
         requestPayerName: true,
-        shippingType: 'delivery',
-        requestPayerEmail: true,
-        requestPayerName: true
     };
 
     return new PaymentRequest(methodData, details, options);
